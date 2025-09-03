@@ -37,7 +37,6 @@ function doRegister()
                     return;
                 }
 
-                // Registration successful → log them in automatically
                 document.getElementById("loginName").value = login;
                 document.getElementById("loginPassword").value = password;
                 doLogin();
@@ -229,3 +228,4 @@ function searchColor()
 	}
 	
 }
+
