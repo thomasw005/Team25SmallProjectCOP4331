@@ -1,58 +1,59 @@
-
 <?php
 
-	$inData = getRequestInfo();
-	
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
+        $inData = getRequestInfo();
+        
+        $id = 0;
+        $firstName = "";
+        $lastName = "";
 
-	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331"); 	
-	if( $conn->connect_error )
-	{
-		returnWithError( $conn->connect_error );
-	}
-	else
-	{
-		$stmt = $conn->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=? AND Password =?");
-		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
-		$stmt->execute();
-		$result = $stmt->get_result();
+        // Read users from JSON file
+        $usersFile = __DIR__ . '/data/users.json';
+        if (!file_exists($usersFile)) {
+                returnWithError("Users data file not found");
+                exit;
+        }
+        
+        $usersData = json_decode(file_get_contents($usersFile), true);
+        if ($usersData === null) {
+                returnWithError("Invalid users data");
+                exit;
+        }
+        
+        // Find matching user
+        $userFound = false;
+        foreach ($usersData as $user) {
+                if ($user['Login'] === $inData["login"] && $user['Password'] === $inData["password"]) {
+                        returnWithInfo($user['firstName'], $user['lastName'], $user['ID']);
+                        $userFound = true;
+                        break;
+                }
+        }
+        
+        if (!$userFound) {
+                returnWithError("No Records Found");
+        }
+        
+        function getRequestInfo()
+        {
+                return json_decode(file_get_contents('php://input'), true);
+        }
 
-		if( $row = $result->fetch_assoc()  )
-		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
-		}
-		else
-		{
-			returnWithError("No Records Found");
-		}
-
-		$stmt->close();
-		$conn->close();
-	}
-	
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
-
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
+        function sendResultInfoAsJson( $obj )
+        {
+                header('Content-type: application/json');
+                echo $obj;
+        }
+        
+        function returnWithError( $err )
+        {
+                $retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+                sendResultInfoAsJson( $retValue );
+        }
+        
+        function returnWithInfo( $firstName, $lastName, $id )
+        {
+                $retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+                sendResultInfoAsJson( $retValue );
+        }
+        
 ?>
