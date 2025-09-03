@@ -4,6 +4,7 @@ expertMode = true
 
 [nix]
 channel = "stable-25_05"
+packages = ["mysql80", "mariadb"]
 
 [workflows]
 runButton = "Project"
