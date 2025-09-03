@@ -3,7 +3,7 @@
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
 	// Find out what HTTP method was used
-    $method = $_SERVER('REQUEST_METHOD');
+    $method = $_SERVER['REQUEST_METHOD'];
 
 	// Read JSON request body, and decode into a PHP array
 	$input = json_decode(file_get_contents('php://input'), true);
@@ -139,4 +139,5 @@
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
+
 ?>
