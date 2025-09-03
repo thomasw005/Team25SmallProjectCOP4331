@@ -1,24 +1,5 @@
 body {
-    background-image: url('../attached_assets/generated_images/Open_ocean_background_b5cf2872.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-}
-
-#ucf-logo {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-}
-
-#ucf-logo img {
-    height: 60px;
-    width: auto;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
+    background-color: #707070;
 }
 
 .vend-sans-light {
@@ -35,7 +16,6 @@ body {
     text-align: center;
     font-family: 'Vend Sans', sans-serif;
     color: #FFFFFF;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
 #loginDiv, #registerDiv {
@@ -43,10 +23,7 @@ body {
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: #FFFFFF;
+    background-color: #b2b2b2;
 }
 
 #loggedInDiv {
@@ -54,10 +31,7 @@ body {
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: #FFFFFF;
+    background-color: #b2b2b2;
 }
 
 #accessUIDiv {
@@ -65,10 +39,7 @@ body {
     width: 70%;
     margin-left: 15%;
     padding: 25px;
-    background-color: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: #FFFFFF;
+    background-color: #b2b2b2;
 }
 
 .buttons {
@@ -77,18 +48,12 @@ body {
     width: 50%;
     margin-left: 25%;
     font-family: 'Vend Sans', sans-serif;
-    background-color: #3498db;
-    color: #FFFFFF;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
 }
 
     .buttons:hover {
-        background-color: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        background-color: #00d5124f;
+        color: #FFFFFF;
+        opacity: 50%;
     }
 
 #loginName, #registerName {
@@ -107,36 +72,6 @@ body {
     font-size: 30px;
 }
 
-#firstName, #lastName {
-    font-size: 30px;
-}
-
-.toggle-buttons {
-    font-size: 18px;
-    border-radius: 20px;
-    width: 80%;
-    margin-left: 10%;
-    margin-top: 20px;
-    padding: 8px;
-    font-family: 'Vend Sans', sans-serif;
-    background-color: #7f8c8d;
-    color: #FFFFFF;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.toggle-buttons:hover {
-    background-color: #95a5a6;
-    transform: translateY(-1px);
-}
-
-#loginToggle, #registerToggle {
-    width: 300px; 
-    margin: 10px auto 0 auto; 
-    text-align: center;
-}
-
 input[type="text"], input[type="password"] {
     border-radius: 25px;
     text-align: center;
@@ -144,17 +79,6 @@ input[type="text"], input[type="password"] {
     margin-left: 10%;
     margin-bottom: 2%;
     font-family: 'Vend Sans', sans-serif;
-    padding: 12px;
-    border: 2px solid #7f8c8d;
-    background-color: #ecf0f1;
-    color: #2c3e50;
-    font-size: 16px;
-}
-
-input[type="text"]:focus, input[type="password"]:focus {
-    outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
 #inner-title {
@@ -165,8 +89,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Vend Sans', sans-serif;
-    color: #3498db;
-    font-weight: bold;
+    color: #95060a;
 }
 
 #loginResult, #registerResult {
@@ -177,8 +100,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin-left: 5%;
     margin-bottom: 2%;
     font-family: 'Vend Sans', sans-serif;
-    color: #e74c3c;
-    font-weight: bold;
+    color: #95060a;
 }
 
 #userName {
@@ -214,6 +136,5 @@ select {
     margin-top: 2%;
     margin-bottom: 1%;
     font-family: 'Vend Sans', sans-serif;
-    color: #27ae60;
-    font-weight: bold;
+    color: #95060a;
 }
