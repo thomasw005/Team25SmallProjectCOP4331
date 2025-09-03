@@ -14,10 +14,22 @@
 
 <h1 id="title">COP 4331 Team 25 Contacts Small Project</h1>
 
-<div id="registerDiv">
+<div id="loginDiv">
         <style>
                 @import url('https://fonts.googleapis.com/css2?family=Vend+Sans:ital,wght@0,300..700;1,300..700&display=swap');
         </style>
+        <span id="inner-title">PLEASE LOG IN</span>
+        <input type="text" id="loginName" placeholder="Username" /><br />
+        <input type="password" id="loginPassword" placeholder="Password" /><br />
+        <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
+        <span id="loginResult"></span>
+        
+        <div id="registerToggle">
+                <button type="button" id="showRegisterButton" class="toggle-buttons" onclick="toggleLogin();"> Need an account? Register </button>
+        </div>
+</div>
+
+<div id="registerDiv" style="display: none;">
         <span id="inner-title">CREATE ACCOUNT</span>
         <input type="text" id="firstName" placeholder="First Name" /><br />
         <input type="text" id="lastName" placeholder="Last Name" /><br />
@@ -28,18 +40,6 @@
         
         <div id="loginToggle">
                 <button type="button" id="showLoginButton" class="toggle-buttons" onclick="toggleLogin();"> Already have an account? Login </button>
-        </div>
-</div>
-
-<div id="loginDiv" style="display: none;">
-        <span id="inner-title">PLEASE LOG IN</span>
-        <input type="text" id="loginName" placeholder="Username" /><br />
-        <input type="password" id="loginPassword" placeholder="Password" /><br />
-        <button type="button" id="loginButton" class="buttons" onclick="doLogin();"> Login </button>
-        <span id="loginResult"></span>
-        
-        <div id="registerToggle">
-                <button type="button" id="showRegisterButton" class="toggle-buttons" onclick="toggleLogin();"> Need an account? Register </button>
         </div>
 </div>
 
