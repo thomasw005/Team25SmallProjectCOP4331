@@ -18,7 +18,7 @@ body {
     color: #FFFFFF;
 }
 
-#loginDiv {
+#loginDiv, #registerDiv {
     font-size: 30px;
     width: 70%;
     margin-left: 15%;
@@ -56,11 +56,11 @@ body {
         opacity: 50%;
     }
 
-#loginName {
+#loginName, #registerName {
     font-size: 30px;
 }
 
-#loginPassword {
+#loginPassword, #registerPassword {
     font-size: 30px;
 }
 
@@ -92,7 +92,7 @@ input[type="text"], input[type="password"] {
     color: #95060a;
 }
 
-#loginResult {
+#loginResult, #registerResult {
     display: inline-block;
     font-size: 0.8em;
     width: 90%;
