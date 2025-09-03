@@ -107,6 +107,10 @@ body {
     font-size: 30px;
 }
 
+#firstName, #lastName {
+    font-size: 30px;
+}
+
 input[type="text"], input[type="password"] {
     border-radius: 25px;
     text-align: center;
