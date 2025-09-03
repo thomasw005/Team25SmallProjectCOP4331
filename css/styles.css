@@ -1,5 +1,5 @@
 body {
-    background-image: url('../attached_assets/generated_images/Open_ocean_background_b5cf2872.png');
+    background-image: url('../attached_assets/generated_images/Open_ocean_background_b5cf2872.png?v=2');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -189,8 +189,25 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 #logoutButton {
-    width: 20%;
-    margin-left: 40%;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: auto;
+    margin-left: 0;
+    padding: 10px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+
+#logoutButton:hover {
+    background-color: #c0392b;
 }
 
 select {
