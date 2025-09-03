@@ -9,9 +9,12 @@ function doRegister()
 {
     let login = document.getElementById("registerName").value;
     let password = document.getElementById("registerPassword").value;
+    let firstName = document.getElementById("registerFirstName").value;
+    let lastName = document.getElementById("registerLastName").value;
+
     document.getElementById("registerResult").innerHTML = "";
 
-    let tmp = { login: login, password: password };
+    let tmp = { login: login, password: password, firstName: firstName, lastName: lastName };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Register.' + extension;
@@ -138,7 +141,7 @@ function readCookie()
 	}
 	else
 	{
-//		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
+		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
 	}
 }
 
