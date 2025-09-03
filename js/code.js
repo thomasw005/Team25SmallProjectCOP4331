@@ -49,7 +49,6 @@ function doRegister()
         document.getElementById("registerResult").innerHTML = err.message;
     }
 }
-
 function doLogin()
 {
         userId = 0;
@@ -228,7 +227,6 @@ function searchColor()
         }
         
 }
-
 
 function toggleLogin()
 {
