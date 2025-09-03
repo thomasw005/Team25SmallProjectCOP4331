@@ -228,3 +228,40 @@ function searchColor()
         }
         
 }
+
+
+function toggleLogin()
+{
+        let loginDiv = document.getElementById('loginDiv');
+        let registerDiv = document.getElementById('registerDiv');
+        
+        if (loginDiv.style.display === 'none') {
+                loginDiv.style.display = 'block';
+                registerDiv.style.display = 'none';
+        } else {
+                loginDiv.style.display = 'none';
+                registerDiv.style.display = 'block';
+        }
+}
+
+function doRegister()
+{
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let login = document.getElementById('registerName').value;
+        let password = document.getElementById('registerPassword').value;
+        
+        document.getElementById('registerResult').innerHTML = '';
+
+        // For demo purposes, just show success message
+        document.getElementById('registerResult').innerHTML = 'Registration successful! Please login.';
+        document.getElementById('firstName').value = '';
+        document.getElementById('lastName').value = '';
+        document.getElementById('registerName').value = '';
+        document.getElementById('registerPassword').value = '';
+        
+        // Auto-switch to login after successful registration
+        setTimeout(function() {
+                toggleLogin();
+        }, 2000);
+}
