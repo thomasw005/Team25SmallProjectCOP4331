@@ -5,6 +5,49 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function doRegister()
+{
+    let login = document.getElementById("registerName").value;
+    let password = document.getElementById("registerPassword").value;
+    document.getElementById("registerResult").innerHTML = "";
+
+    let tmp = { login: login, password: password };
+    let jsonPayload = JSON.stringify(tmp);
+
+    let url = urlBase + '/Register.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+
+                if (jsonObject.error && jsonObject.error !== "")
+                {
+                    document.getElementById("registerResult").innerHTML = jsonObject.error;
+                    return;
+                }
+
+                // Registration successful → log them in automatically
+                document.getElementById("loginName").value = login;
+                document.getElementById("loginPassword").value = password;
+                doLogin();
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("registerResult").innerHTML = err.message;
+    }
+}
+
 function doLogin()
 {
 	userId = 0;
