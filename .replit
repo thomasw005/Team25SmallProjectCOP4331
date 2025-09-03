@@ -1,0 +1,6 @@
+modules = ["nodejs-20", "php-8.2", "web", "postgresql-16"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
