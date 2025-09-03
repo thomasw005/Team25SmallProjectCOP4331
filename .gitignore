@@ -1,0 +1,16 @@
+# Ignore everything by default
+*
+
+# But track these specific frontend files
+!index.html
+!color.html
+!css/
+!css/styles.css
+!js/
+!js/code.js
+!js/md5.js
+!images/
+!images/*
+
+# Keep the .gitignore file itself
+!.gitignore
