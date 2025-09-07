@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessible Email Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    .form-group {
+      position: relative;
+      margin-bottom: 20px;
+    }
+    input[type="email"] {
+      padding: 8px 35px 8px 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    .icon {
+      position: absolute;
+      right: 10px;
+      top: 35px;
+      font-size: 20px;
+    }
+    .status-message {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Email Input (with Validation)</h1>
+
+  <form>
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" id="email" name="email" aria-describedby="emailStatus" required>
+      <span id="emailIcon" class="icon" aria-hidden="true"></span>
+      <div id="emailStatus" class="status-message" aria-live="polite"></div>
+    </div>
+  </form>
+
+  <script>
+    const emailInput = document.getElementById('email');
+    const emailStatus = document.getElementById('emailStatus');
+    const emailIcon = document.getElementById('emailIcon');
+
+    emailInput.addEventListener('input', () => {
+      const value = emailInput.value.trim();
+      const isValid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value);
+      const isGmail = value.endsWith('@gmail.com');
+
+      if (!value) {
+        emailStatus.textContent = '';
+        emailIcon.textContent = '';
+        return;
+      }
+
+      if (isValid && isGmail) {
+        emailStatus.textContent = '✔️ Valid Gmail address';
+        emailStatus.style.color = 'green';
+        emailIcon.textContent = '✔️';
+        emailIcon.style.color = 'green';
+      } else if (isValid) {
+        emailStatus.textContent = '⚠️ Valid email but not Gmail';
+        emailStatus.style.color = 'orange';
+        emailIcon.textContent = '✔️';
+        emailIcon.style.color = 'orange';
+      } else {
+        emailStatus.textContent = '❌ Invalid email address';
+        emailStatus.style.color = 'red';
+        emailIcon.textContent = '❌';
+        emailIcon.style.color = 'red';
+      }
+    });
+  </script>
+
+</body>
+</html>
