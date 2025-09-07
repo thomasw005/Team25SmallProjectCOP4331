@@ -1,85 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Accessible Email Form</title>
+  <meta charset="UTF-8" />
+  <title>Accessible Form</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 30px;
     }
+
     label {
       display: block;
       margin-bottom: 8px;
+      font-weight: bold;
     }
+
+    input {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
     .form-group {
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
     }
+
     input[type="email"] {
       padding: 8px 35px 8px 10px;
-      font-size: 16px;
-      width: 300px;
     }
+
     .icon {
       position: absolute;
       right: 10px;
-      top: 35px;
+      top: 38px;
       font-size: 20px;
     }
+
     .status-message {
       margin-top: 5px;
       font-size: 14px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    input:focus {
+      outline: 3px solid #00aaff;
+      outline-offset: 2px;
+    }
+
+    h2 {
+      margin-top: 40px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
 
-  <h1>Email Input (with Validation)</h1>
+  <h2>Login</h2>
+  <form id="loginForm">
+    <label for="loginUsername" class="sr-only">Username</label>
+    <input type="text" id="loginUsername" name="username" placeholder="Username" aria-label="Username" aria-required="true" required>
 
-  <form>
+    <label for="loginPassword" class="sr-only">Password</label>
+    <input type="password" id="loginPassword" name="password" placeholder="Password" aria-label="Password" aria-required="true" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <h2>Create Account</h2>
+  <form id="registerForm">
+
+    <label for="firstName" class="sr-only">First Name</label>
+    <input type="text" id="firstName" name="firstName" placeholder="First Name" aria-label="First Name" aria-required="true" required>
+
+    <label for="lastName" class="sr-only">Last Name</label>
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name" aria-label="Last Name" aria-required="true" required>
+
+    <label for="registerUsername" class="sr-only">Username</label>
+    <input type="text" id="registerUsername" name="username" placeholder="Username" aria-label="Username" aria-required="true" required>
+
+    <!-- ✅ EMAIL VALIDATION FIELD -->
     <div class="form-group">
       <label for="email">Email address:</label>
       <input type="email" id="email" name="email" aria-describedby="emailStatus" required>
       <span id="emailIcon" class="icon" aria-hidden="true"></span>
       <div id="emailStatus" class="status-message" aria-live="polite"></div>
     </div>
+
+    <label for="registerPassword" class="sr-only">Password</label>
+    <input type="password" id="registerPassword" name="password" placeholder="Password" aria-label="Password" aria-required="true" required>
+
+    <button type="submit">Create Account</button>
   </form>
 
+  <!-- ✅ JS: Email Validation Script -->
   <script>
     const emailInput = document.getElementById('email');
-    const emailStatus = document.getElementById('emailStatus');
-    const emailIcon = document.getElementById('emailIcon');
-
-    emailInput.addEventListener('input', () => {
-      const value = emailInput.value.trim();
-      const isValid = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(value);
-      const isGmail = value.endsWith('@gmail.com');
-
-      if (!value) {
-        emailStatus.textContent = '';
-        emailIcon.textContent = '';
-        return;
-      }
-
-      if (isValid && isGmail) {
-        emailStatus.textContent = '✔️ Valid Gmail address';
-        emailStatus.style.color = 'green';
-        emailIcon.textContent = '✔️';
-        emailIcon.style.color = 'green';
-      } else if (isValid) {
-        emailStatus.textContent = '⚠️ Valid email but not Gmail';
-        emailStatus.style.color = 'orange';
-        emailIcon.textContent = '✔️';
-        emailIcon.style.color = 'orange';
-      } else {
-        emailStatus.textContent = '❌ Invalid email address';
-        emailStatus.style.color = 'red';
-        emailIcon.textContent = '❌';
-        emailIcon.style.color = 'red';
-      }
-    });
-  </script>
-
-</body>
-</html>
