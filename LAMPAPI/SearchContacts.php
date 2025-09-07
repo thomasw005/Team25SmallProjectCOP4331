@@ -1,67 +1,47 @@
 <?php
     $inData = getRequestInfo();
 
-    $searchResults = "";
-    $searchCounter = 0;
+    $search = $inData["search"];
+    $userId = $inData["userId"];
 
     $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
-    if($conn->connect_error)
+    if ($conn->connect_error)
     {
         returnWithError($conn->connect_error);
-    } else
+    }
+    else
     {
-        $stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ?) AND UserID = ?");
-        $searchTerm =  "%" . $inData["search"] . "%";
-        $stmt->bind_param("sss", $searchTerm, $searchTerm, $inData["UserID"]);
-        $stmt->execute();
+        $searchResults = "";
+        $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email 
+                                FROM Contacts 
+                                WHERE (FirstName LIKE ? OR LastName LIKE ? OR Phone LIKE ? OR Email LIKE ?) 
+                                AND UserID=?");
 
+        $like = "%" . $search . "%";
+        $stmt->bind_param("ssssi", $like, $like, $like, $like, $userId);
+        $stmt->execute();
         $result = $stmt->get_result();
 
-        while($row = $result->fetch_assoc())
+        while ($row = $result->fetch_assoc())
         {
-            if($searchCounter > 0 )
-            {
-                $searchResults .= ",";
-            }
-            $searchCounter++;
-
-            $searchResults .= '{"FirstName" : "' . $row["FirstName"]. '", "LastName" : "' . $row["LastName"]. '", "PhoneNumber" : "' . $row["PhoneNumber"]. '", "EmailAddress" : "' . $row["EmailAddress"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}'
+            if ($searchResults != "") $searchResults .= ",";
+            $searchResults .= '{"ID":' . $row["ID"] . 
+                            ',"FirstName":"' . $row["FirstName"] . 
+                            '","LastName":"' . $row["LastName"] . 
+                            '","Phone":"' . $row["Phone"] . 
+                            '","Email":"' . $row["Email"] . '"}';
         }
 
-        if( $searchCounter == 0 )
-		{
-			returnWithError( "No Records Found" );
-		}
-		else
-		{
-			returnWithInfo( $searchResults );
-		}
+        if ($searchResults == "") returnWithError("No Records Found");
+        else returnWithInfo($searchResults);
 
         $stmt->close();
-		$conn->close();
+        $conn->close();
     }
 
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
-
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
-	}
-
-	function returnWithError( $err )
-	{
-		$retValue = '{"error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $searchResults )
-	{
-		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
+    function getRequestInfo() { return json_decode(file_get_contents('php://input'), true); }
+    function sendResultInfoAsJson($obj) { header('Content-type: application/json'); echo $obj; }
+    function returnWithError($err) { $retValue = '{"error":"' . $err . '"}'; sendResultInfoAsJson($retValue); }
+    function returnWithInfo($searchResults) { $retValue = '{"results":[' . $searchResults . '],"error":""}'; sendResultInfoAsJson($retValue); }
 ?>
