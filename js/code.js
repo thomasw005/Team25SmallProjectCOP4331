@@ -206,10 +206,12 @@ function searchContact()
                 for (let i = 0; i < jsonObject.results.length; i++)
                 {
                     let c = jsonObject.results[i];
-                    contactList += `${c.FirstName} ${c.LastName} - ${c.Phone} - ${c.Email}`;
-                    contactList += ` <button onclick="deleteContact(${c.ID});">Delete</button>`;
-                    contactList += ` <button onclick="updateContact(${c.ID}, '${c.FirstName}', '${c.LastName}', '${c.Phone}', '${c.Email}');">Edit</button>`;
-                    contactList += "<br />";
+                    contactList += `
+                    ${c.FirstName} ${c.LastName} - ${c.Phone} - ${c.Email}
+                    <button onclick="deleteContact(${c.ID})">Delete</button>
+                    <button onclick="updateContact(${c.ID}, \`${c.FirstName}\`, \`${c.LastName}\`, \`${c.Phone}\`, \`${c.Email}\`)">Edit</button>
+                    <br />
+                    `;
                 }
 
                 
@@ -266,6 +268,7 @@ function updateContact(contactId, oldFirst, oldLast, oldPhone, oldEmail)
     {
         xhr.onreadystatechange = function() 
         {
+            console.log("Update response:", this.status, this.responseText);
             if (this.readyState == 4 && this.status == 200) searchContact();
         };
         xhr.send(jsonPayload);
