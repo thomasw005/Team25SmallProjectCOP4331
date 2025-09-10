@@ -23,18 +23,18 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
+        $contacts = [];
         while ($row = $result->fetch_assoc())
         {
-            if ($searchResults != "") $searchResults .= ",";
-            $searchResults .= '{"ID":' . $row["ID"] . 
-                            ',"FirstName":"' . $row["FirstName"] . 
-                            '","LastName":"' . $row["LastName"] . 
-                            '","Phone":"' . $row["Phone"] . 
-                            '","Email":"' . $row["Email"] . '"}';
+            $contacts[] = $row;
         }
-
-        if ($searchResults == "") returnWithError("No Records Found");
-        else returnWithInfo($searchResults);
+        if(empty($contacts))
+        {
+            returnWithError("No Records Found");
+        } else
+        {
+            returnWithInfoAsJson(json_encode($contacts));
+        }
 
         $stmt->close();
         $conn->close();
@@ -43,5 +43,6 @@
     function getRequestInfo() { return json_decode(file_get_contents('php://input'), true); }
     function sendResultInfoAsJson($obj) { header('Content-type: application/json'); echo $obj; }
     function returnWithError($err) { $retValue = '{"error":"' . $err . '"}'; sendResultInfoAsJson($retValue); }
-    function returnWithInfo($searchResults) { $retValue = '{"results":[' . $searchResults . '],"error":""}'; sendResultInfoAsJson($retValue); }
+
 ?>
+
