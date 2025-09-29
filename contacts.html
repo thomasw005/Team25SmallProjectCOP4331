@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Personal Contact Manager</title>
 
-  <!-- Load JavaScript -->
-  <script type="text/javascript" src="js/code.js"></script>
+  <script type="text/javascript" src="js/code.js?v=5"></script>
 
-  <!-- Load CSS -->
   <link href="css/styles.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 
@@ -18,37 +18,37 @@
 </head>
 <body>
   <div id="ucf-logo">
-    <img src="images/ucf-logo.svg" alt="UCF Logo" />
+    <img src="images/ucf-logo.png" alt="UCF Logo" />
   </div>
 
   <h1 id="title">Personal Contact Manager</h1>
 
-  <div id="loggedInDiv">
+  <div id="loggedInDiv" class="section-box">
     <span id="userName"></span><br />
     <button type="button" id="logoutButton" class="buttons" onclick="doLogout();">
       Log Out
     </button>
   </div>
 
-  <div id="accessUIDiv">
-    <br />
-
-    <!-- Search Contacts -->
+  <div class="section-box">
+    <h2 class="section-title">Search Contacts</h2>
     <input type="text" id="searchText" placeholder="Search Contacts" />
     <button type="button" id="searchContactButton" class="buttons" onclick="searchContact();">
       Search
-    </button><br />
+    </button>
     <span id="contactSearchResult"></span>
-    <p id="contactList"></p><br /><br />
+    <div id="contactList"></div>
+  </div>
 
-    <!-- Add Contact -->
-    <input type="text" id="contactFirstName" placeholder="First Name" />
-    <input type="text" id="contactLastName" placeholder="Last Name" />
-    <input type="text" id="contactPhone" placeholder="Phone Number" />
-    <input type="text" id="contactEmail" placeholder="Email Address" />
+  <div class="section-box">
+    <h2 class="section-title">Add Contact</h2>
+    <input type="text" id="contactFirstName" placeholder="First Name" /><br />
+    <input type="text" id="contactLastName" placeholder="Last Name" /><br />
+    <input type="text" id="contactPhone" placeholder="Phone Number" /><br />
+    <input type="text" id="contactEmail" placeholder="Email Address" /><br />
     <button type="button" id="addContactButton" class="buttons" onclick="addContact();">
       Add Contact
-    </button><br />
+    </button>
     <span id="contactAddResult"></span>
   </div>
 </body>
