@@ -15,13 +15,11 @@ if ($conn->connect_error) {
     $searchResults = "";
 
     if ($search === "") {
-        // Return all contacts if no search term
         $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email 
                                 FROM Contacts 
                                 WHERE UserID=?");
         $stmt->bind_param("i", $userId);
     } else {
-        // Search with LIKE
         $stmt = $conn->prepare("SELECT ID, FirstName, LastName, Phone, Email 
                                 FROM Contacts 
                                 WHERE (FirstName LIKE ? 

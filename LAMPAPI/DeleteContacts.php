@@ -2,21 +2,12 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-//
-// Read raw input
-//
 $raw = file_get_contents("php://input");
-file_put_contents("/tmp/debug_input.log", $raw);   // Save raw input for inspection
+file_put_contents("/tmp/debug_input.log", $raw);
 
-//
-// Decode JSON into an array
-//
 $inData = json_decode($raw, true);
-file_put_contents("/tmp/debug_decoded.log", print_r($inData, true)); // Save decoded data
+file_put_contents("/tmp/debug_decoded.log", print_r($inData, true));
 
-//
-// Validate input
-//
 if (!$inData) {
     die("DEBUG: JSON decode failed. Raw input: " . $raw);
 }
@@ -28,9 +19,6 @@ if (!$id || !$userId) {
     die("DEBUG: Missing id or userId. Decoded input: " . print_r($inData, true));
 }
 
-//
-// Database connection
-//
 $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 
 if ($conn->connect_error) {
@@ -52,9 +40,6 @@ if ($conn->connect_error) {
     }
 }
 
-//
-// Helper functions
-//
 function sendResultInfoAsJson($obj) {
     header('Content-type: application/json');
     echo $obj;

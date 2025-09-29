@@ -6,6 +6,7 @@ body {
     background-repeat: no-repeat;
     margin: 0;
     padding: 0;
+    font-family: 'Vend Sans', sans-serif;
 }
 
 #ucf-logo {
@@ -21,61 +22,44 @@ body {
     filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.5));
 }
 
-.vend-sans-light {
-    font-family: "Vend Sans", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 200;
-    font-style: normal;
-}
-
 #title {
     font-size: 40px;
     width: 100%;
-    margin: 2% 5%;
+    margin: 2% 0;
     text-align: center;
-    font-family: 'Vend Sans', sans-serif;
     color: #FFFFFF;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
 
-#loginDiv, #registerDiv {
-    font-size: 30px;
+#loginDiv, 
+#registerDiv, 
+#loggedInDiv, 
+#accessUIDiv,
+.section-box {
+    font-size: 18px;
     width: 70%;
-    margin-left: 15%;
+    margin: 20px auto;
     padding: 25px;
     background-color: #2c3e50;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     color: #FFFFFF;
+    text-align: center;
 }
 
-#loggedInDiv {
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: #FFFFFF;
-}
-
-#accessUIDiv {
-    font-size: 30px;
-    width: 70%;
-    margin-left: 15%;
-    padding: 25px;
-    background-color: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    color: #FFFFFF;
+/* Section Titles */
+.section-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #ecf0f1;
 }
 
 .buttons {
-    font-size: 30px;
+    font-size: 20px;
     border-radius: 25px;
-    width: 50%;
-    margin-left: 25%;
+    width: 40%;
+    margin: 15px auto;
     font-family: 'Vend Sans', sans-serif;
     background-color: #3498db;
     color: #FFFFFF;
@@ -83,154 +67,141 @@ body {
     padding: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
+    display: block;
 }
-
-    .buttons:hover {
-        background-color: #2980b9;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    }
-
-#loginName, #registerName {
-    font-size: 30px;
-}
-
-#loginPassword, #registerPassword {
-    font-size: 30px;
-}
-
-#searchText {
-    font-size: 30px;
-}
-
-#colorText {
-    font-size: 30px;
-}
-
-#firstName, #lastName {
-    font-size: 30px;
+.buttons:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .toggle-buttons {
-    font-size: 18px;
+    font-size: 16px;
     border-radius: 20px;
     width: 80%;
-    margin-left: 10%;
-    margin-top: 20px;
+    margin: 15px auto 0 auto;
     padding: 8px;
-    font-family: 'Vend Sans', sans-serif;
     background-color: #7f8c8d;
     color: #FFFFFF;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .toggle-buttons:hover {
     background-color: #95a5a6;
     transform: translateY(-1px);
 }
 
-#loginToggle, #registerToggle {
-    width: 300px; 
-    margin: 10px auto 0 auto; 
-    text-align: center;
+#logoutButton {
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease;
+}
+#logoutButton:hover {
+    background-color: #c0392b;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], 
+input[type="password"] {
     border-radius: 25px;
     text-align: center;
     width: 80%;
-    margin-left: 10%;
-    margin-bottom: 2%;
-    font-family: 'Vend Sans', sans-serif;
+    margin: 10px auto;
     padding: 12px;
     border: 2px solid #7f8c8d;
     background-color: #ecf0f1;
     color: #2c3e50;
     font-size: 16px;
+    font-family: 'Vend Sans', sans-serif;
+    display: block;
 }
-
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, 
+input[type="password"]:focus {
     outline: none;
     border-color: #3498db;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
 
-#inner-title {
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Vend Sans', sans-serif;
-    color: #3498db;
-    font-weight: bold;
+.contact-row {
+  display: grid;
+  grid-template-columns: repeat(4, auto) auto auto;
+  gap: 10px;
+  align-items: center;
+  margin: 8px 0;
+  padding: 10px;
+  background: #34495e;
+  border-radius: 8px;
 }
 
-#loginResult, #registerResult {
-    display: inline-block;
-    font-size: 0.8em;
-    width: 90%;
-    text-align: center;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    font-family: 'Vend Sans', sans-serif;
-    color: #e74c3c;
-    font-weight: bold;
+.contact-row span {
+  color: #ecf0f1;
+  font-size: 16px;
+  padding: 4px 8px;
 }
 
-#userName {
-    display: inline-block;
-    width: 80%;
-    margin-left: 10%;
-    text-align: center;
+.contact-row input {
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  border: 1px solid #7f8c8d;
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-size: 14px;
+  width: auto;
+  min-width: 100px;
+  max-width: 180px;
+  box-sizing: border-box;
+}
+.contact-row input:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: #34495e;
 }
 
-#logoutButton {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    width: auto;
-    margin-left: 0;
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.contact-row button {
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  transition: all 0.2s ease;
+}
+.contact-row button:hover {
+  background-color: #2980b9;
+}
+
+.contact-row button:last-child {
+  background-color: #e74c3c;
+}
+.contact-row button:last-child:hover {
+  background-color: #c0392b;
+}
+
+#loginResult, 
+#registerResult, 
+#contactAddResult, 
+#contactSearchResult {
+    display: inline-block;
     font-size: 16px;
-    cursor: pointer;
-    box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-    transition: background-color 0.3s ease;
-}
-
-#logoutButton:hover {
-    background-color: #c0392b;
-}
-
-select {
-    width: 30%;
-    margin-left: 35%;
-    margin-top: 2%;
-    font-size: 0.75em;
-    font-family: 'Vend Sans', sans-serif;
-}
-
-#colorSearchResult {
-    display: none;
-}
-
-#colorAddResult {
-    display: inline-block;
-    font-size: 0.8em;
     width: 90%;
     text-align: center;
-    margin-left: 5%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-family: 'Vend Sans', sans-serif;
-    color: #27ae60;
+    margin: 10px auto;
     font-weight: bold;
+}
+#loginResult, #registerResult {
+    color: #e74c3c;
+}
+#contactAddResult {
+    color: #27ae60;
+}
+#contactSearchResult {
+    color: #3498db;
 }
