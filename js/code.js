@@ -2,6 +2,12 @@ let userId = 0;
 let firstName = "";
 let lastName = "";
 
+function isValidEmail(email) {
+  // Simple regex: text@text.domain
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email);
+}
+
 function saveCookie() {
   let minutes = 20;
   let date = new Date();
@@ -146,6 +152,12 @@ function addContact() {
       "All fields are required";
     return;
   }
+  
+  if (!isValidEmail(email)){
+    document.getElementById("contactAddResult").innerHTML =
+      "Valid email is required";
+      return;
+  }
 
   let tmp = {
     firstName: fName,
@@ -279,10 +291,16 @@ function updateContact(id, firstName, lastName, phone, email) {
   let jsonPayload = JSON.stringify(tmp);
 
   let url = "LAMPAPI/UpdateContacts.php";
+  
 
   let xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  if (!isValidEmail(email)){
+    document.getElementById("contactAddResult").innerHTML =
+      "Valid email is required";
+      return;
+  }
   xhr.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
       console.log("Contact updated");
